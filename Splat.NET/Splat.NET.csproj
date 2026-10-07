@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
-	<LangVersion>13.0</LangVersion>
+    <LangVersion>13.0</LangVersion>
+    <PackageId>YellowDogMan.Splat.NET</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
