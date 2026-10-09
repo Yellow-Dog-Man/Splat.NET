@@ -319,7 +319,7 @@ namespace Splat.NET.Formats
                     throw new IndexOutOfRangeException($"SOG pixel ({x},{y}) is outside {Width}x{Height}.");
                 int row = flipRows ? Height - 1 - y : y;
                 int offset = (row * Width + x) * 4;
-                return new Rgba32(m_rgba[offset], m_rgba[offset + 1], m_rgba[offset + 2], m_rgba[offset + 3]);
+                return new Rgba32(m_rgba[offset + 2], m_rgba[offset + 1], m_rgba[offset + 0], m_rgba[offset + 3]);
             }
         }
 
