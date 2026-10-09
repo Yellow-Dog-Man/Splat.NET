@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Imazen.WebP" Version="11.0.0" />
+    <PackageReference Include="Imazen.WebP.AllPlatforms" Version="1.6.1" />
     <PackageReference Include="ZstdSharp.Port" Version="0.8.8" />
   </ItemGroup>
 
