@@ -173,8 +173,9 @@ namespace Splat.NET
                     float dc0 = ToFiniteFloat(values[dc0Index], "f_dc_0", splat);
                     float dc1 = ToFiniteFloat(values[dc1Index], "f_dc_1", splat);
                     float dc2 = ToFiniteFloat(values[dc2Index], "f_dc_2", splat);
-                    double opacity = RequireFinite(Clamp01(values[opacityIndex]), "opacity", splat);
-                    result.Colors[splat] = new Vector4(dc0, dc1, dc2, ActivateOpacity(opacity));
+                    double opacity = values[opacityIndex];
+                    result.Colors[splat] = new Vector4(dc0, dc1, dc2, 
+                        RequireFinite(ActivateOpacity(opacity), "activated opacity", splat));
 
                     result.Scales[splat] = new Vector3(
                         ExpScale(values[scale0Index], "scale_0", splat),
@@ -716,22 +717,19 @@ namespace Splat.NET
             return ToFiniteFloat(Math.Exp(logScale), $"exp({property})", splat);
         }
 
-        static double RequireFinite(double value, string property, int splat)
+        static float RequireFinite(float value, string property, int splat)
         {
-            if (double.IsNaN(value) || double.IsInfinity(value))
+            if (float.IsNaN(value) || float.IsInfinity(value))
                 throw new InvalidDataException(
                     $"PLY vertex {splat} property '{property}' is not finite.");
             return value;
         }
 
-        static double Clamp01(double value)
+        static double RequireFinite(double value, string property, int splat)
         {
-            if (value < 0)
-                return 0;
-
-            if (value > 1)
-                return 1;
-
+            if (double.IsNaN(value) || double.IsInfinity(value))
+                throw new InvalidDataException(
+                    $"PLY vertex {splat} property '{property}' is not finite.");
             return value;
         }
 
